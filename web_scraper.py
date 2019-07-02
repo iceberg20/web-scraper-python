@@ -13,6 +13,14 @@ and they lived at the bottom of a well.</p>
 """
 
 from bs4 import BeautifulSoup
+import requests
+
 soup = BeautifulSoup(html_doc, 'html.parser')
 
 print(soup.title)
+
+
+
+sauce = requests.get('https://csgoempire.com/withdraw')
+soup = BeautifulSoup(sauce.content,'html.parser')
+print(soup.find_all('p'))
