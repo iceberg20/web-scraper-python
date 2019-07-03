@@ -1,26 +1,22 @@
-html_doc = """
-<html><head><title>The Dormouse's story</title></head>
-<body>
-<p class="title"><b>The Dormouse's story</b></p>
-
-<p class="story">Once upon a time there were three little sisters; and their names were
-<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
-<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
-<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
-and they lived at the bottom of a well.</p>
-
-<p class="story">...</p>
-"""
 
 from bs4 import BeautifulSoup
 import requests
 
-soup = BeautifulSoup(html_doc, 'html.parser')
 
-print(soup.title)
+page = requests.get('https://rn.olx.com.br/imoveis')
+
+soup = BeautifulSoup(page.text, 'html.parser')
+
+pag2 = 'https://rn.olx.com.br/imoveis?o=2'
+pag3 = 'https://rn.olx.com.br/imoveis?o=3'
+
+list_itens = soup.find(class_= 'section_OLXad-list')
+
+itens = list_itens.find_all(class_='item')
+prices = itens.find(class_='OLXad-list-price')
+
+for x in itens:
+  print(x.prettify())
 
 
 
-sauce = requests.get('https://csgoempire.com/withdraw')
-soup = BeautifulSoup(sauce.content,'html.parser')
-print(soup.find_all('p'))
