@@ -97,7 +97,7 @@ def exist_erro(pagina):
     return preco != None
 
 def write_csv(imoveis):
-  arqv = open('imoveis.csv', 'w')
+  arqv = open('imoveis.csv', 'a')
   for imovel in imoveis:
     if imovel:
       print(imovel)
@@ -106,7 +106,7 @@ def write_csv(imoveis):
   arqv.close()
    
 if __name__ == '__main__':
-  pagina = 80
+  pagina = 97
 
   while not exist_erro(pagina):
 
@@ -118,8 +118,7 @@ if __name__ == '__main__':
 
 
       write_csv(imoveis)
-
-    imoveis = []  
+ 
     pagina = pagina + 1
 
 
